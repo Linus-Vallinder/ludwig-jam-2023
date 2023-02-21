@@ -12,7 +12,7 @@ public class Intro : MonoBehaviour
 
     private void Awake()
     {
-        m_transition = TransitionHandler.Instance;
+        m_transition = SceneTransition.Instance;
     }
 
     private void Start()

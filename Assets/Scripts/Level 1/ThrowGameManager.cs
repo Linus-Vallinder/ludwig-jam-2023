@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class ThrowGameManager : MonoBehaviour
 {
     [SerializeField] private float m_pullForce = 5f;
+    [SerializeField] private Material m_lineMat;
 
     [Space, SerializeField] private InputActionReference m_pull;
 
@@ -12,6 +13,7 @@ public class ThrowGameManager : MonoBehaviour
     private Ipullable m_currentTarget = null;
     private Transform m_pullPoint;
     private float m_lastDistance;
+    private LineRenderer m_line;
 
     #region Unity Methods
 
@@ -52,9 +54,10 @@ public class ThrowGameManager : MonoBehaviour
 
     private void ClearItem(InputAction.CallbackContext cxt)
     {
-        if(m_pullPoint) Destroy(m_pullPoint.gameObject);
-        if(m_currentTarget != null) m_currentTarget = null;
-        if(m_pullPoint != null) m_pullPoint = null;
+        if (m_pullPoint) Destroy(m_pullPoint.gameObject);
+        if (m_currentTarget != null) m_currentTarget = null;
+        if (m_pullPoint != null) m_pullPoint = null;
+        if (m_line != null) m_line = null;
     }
 
     public Vector3 GetWorldPointFromScreen(float dist)
@@ -78,6 +81,12 @@ public class ThrowGameManager : MonoBehaviour
                 pullPoint.transform.rotation = Quaternion.identity;
                 pullPoint.transform.parent = hit.transform;
 
+                m_line = pullPoint.AddComponent<LineRenderer>();
+                m_line.material = m_lineMat;
+
+                m_line.startWidth = 1f;
+                m_line.endWidth = 1f;
+
                 m_lastDistance = hit.distance;
                 m_pullPoint = pullPoint.transform;
                 return hit.collider.GetComponent<Ipullable>();
@@ -96,5 +105,5 @@ public class ThrowGameManager : MonoBehaviour
         Gizmos.color = Color.blue;
     }
 
-    #endregion
+    #endregion Gizmos
 }

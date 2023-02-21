@@ -695,7 +695,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672151126}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -797,6 +797,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1103438068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5671165348599552693, guid: c969df8feddb5c349a56f624855237c8, type: 3}
+  m_PrefabInstance: {fileID: 1227477611}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1227477611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -869,6 +874,10 @@ PrefabInstance:
       value: Camera
       objectReference: {fileID: 0}
     - target: {fileID: 5671165348600663679, guid: c969df8feddb5c349a56f624855237c8, type: 3}
+      propertyPath: m_ClearFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5671165348600663679, guid: c969df8feddb5c349a56f624855237c8, type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0.9339623
       objectReference: {fileID: 0}
@@ -892,6 +901,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5671165348599091817, guid: c969df8feddb5c349a56f624855237c8, type: 3}
   m_PrefabInstance: {fileID: 1227477611}
   m_PrefabAsset: {fileID: 0}
+--- !u!45 &1227477618
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103438068}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: e0da6813557c358418f6eaffc307f718, type: 2}
 --- !u!1 &1299465592
 GameObject:
   m_ObjectHideFlags: 0
