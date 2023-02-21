@@ -12,6 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 64b002547473b554b9dfbf87570b8252
   - enabled: 1
-    path: Assets/Scenes/Water.unity
+    path: Assets/Scenes/Throw.unity
     guid: 86b1797520118c74883f85d2dab83f7e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: bca0ca702bdba9b47acea559ad33bc19, type: 2}

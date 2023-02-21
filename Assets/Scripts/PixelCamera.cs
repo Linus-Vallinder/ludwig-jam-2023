@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [ExecuteInEditMode]
-public class PixelCamera : MonoBehaviour
+public class PixelCamera : Singleton<PixelCamera>
 {
     [Space, SerializeField] private int m_width = 500;
     [SerializeField] private int m_height = 500;
@@ -36,7 +36,13 @@ public class PixelCamera : MonoBehaviour
                                                               1f);
     }
 
-    public Vector3 ScreenToWorldPosition(Vector3 screenPosition)
+    public Ray ScreenToRay(Vector3 screenPos) =>
+        m_camera.ScreenPointToRay(GetCorrectScreenPos(screenPos));
+
+    public Vector3 ScreenToWorldPosition(Vector3 screenPosition) =>
+        m_camera.ScreenToWorldPoint(GetCorrectScreenPos(screenPosition));
+
+    private Vector3 GetCorrectScreenPos(Vector3 screenPosition)
     {
         int targetWidth = Screen.width;
         int targetHeight = Screen.height;
@@ -53,8 +59,6 @@ public class PixelCamera : MonoBehaviour
             (Screen.height - targetHeight) / 2,
             0.0f);
 
-        Vector3 correctedPosition = (screenPosition - offset) / scalefactor;
-
-        return m_camera.ScreenToWorldPoint(correctedPosition);
+        return (screenPosition - offset) / scalefactor;
     }
 }
