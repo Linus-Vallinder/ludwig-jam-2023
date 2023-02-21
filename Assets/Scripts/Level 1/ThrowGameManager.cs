@@ -1,14 +1,23 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class ThrowGameManager : MonoBehaviour
 {
     [SerializeField] private float m_pullForce = 5f;
-    [SerializeField] private Material m_lineMat;
 
     [Space, SerializeField] private InputActionReference m_pull;
 
     [Space, SerializeField] private LayerMask m_layer;
+    [SerializeField] private LayerMask m_onTableMask;
+    [SerializeField] private float m_tableCheckDistance = 4;
+
+    [Header("On Done")]
+    [SerializeField] private float m_respawnDelay;
+
+    [SerializeField] private float m_dropDelay;
+    [SerializeField] private UnityEvent m_onOff;
 
     private Ipullable m_currentTarget = null;
     private Transform m_pullPoint;
@@ -39,10 +48,45 @@ public class ThrowGameManager : MonoBehaviour
         {
             var dir = GetPullDirection();
             m_currentTarget.Pull(-dir, m_pullForce);
+            if (!IsOnTable())
+            {
+                ClearItem(new());
+                StartCoroutine(FallOffTable());
+                StartRespawn();
+            }
         }
     }
 
     #endregion Unity Methods
+
+    private bool IsOnTable()
+    {
+        if (m_currentTarget == null) return false;
+
+        if (Physics.Raycast(m_pullPoint.position, Vector3.down, m_tableCheckDistance, m_onTableMask))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void StartRespawn()
+    {
+        if (m_currentTarget != null) return;
+        StartCoroutine(Respawn());
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return null;
+    }
+
+    private IEnumerator FallOffTable()
+    {
+        yield return new WaitForSeconds(m_dropDelay);
+        m_onOff?.Invoke();
+    }
 
     private Vector3 GetPullDirection()
     {
@@ -82,7 +126,6 @@ public class ThrowGameManager : MonoBehaviour
                 pullPoint.transform.parent = hit.transform;
 
                 m_line = pullPoint.AddComponent<LineRenderer>();
-                m_line.material = m_lineMat;
 
                 m_line.startWidth = 1f;
                 m_line.endWidth = 1f;
