@@ -20,6 +20,7 @@ public class ThrowGameManager : MonoBehaviour
     [SerializeField] private UnityEvent m_onOff;
 
     private Ipullable m_currentTarget = null;
+    private Transform m_target;
     private Transform m_pullPoint;
     private float m_lastDistance;
     private LineRenderer m_line;
@@ -48,6 +49,9 @@ public class ThrowGameManager : MonoBehaviour
         {
             var dir = GetPullDirection();
             m_currentTarget.Pull(-dir, m_pullForce);
+
+            Debug.Log(IsOnTable());
+
             if (!IsOnTable())
             {
                 ClearItem(new());
@@ -63,10 +67,7 @@ public class ThrowGameManager : MonoBehaviour
     {
         if (m_currentTarget == null) return false;
 
-        if (Physics.Raycast(m_pullPoint.position, Vector3.down, m_tableCheckDistance, m_onTableMask))
-        {
-            return true;
-        }
+        if (Physics.Raycast(m_pullPoint.position, Vector3.down, m_tableCheckDistance, m_onTableMask)) return true;
 
         return false;
     }
@@ -74,6 +75,7 @@ public class ThrowGameManager : MonoBehaviour
     public void StartRespawn()
     {
         if (m_currentTarget != null) return;
+        Debug.Log("Start Respawn");
         StartCoroutine(Respawn());
     }
 
@@ -86,6 +88,8 @@ public class ThrowGameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(m_dropDelay);
         m_onOff?.Invoke();
+        if (m_target != null) Destroy(m_target.gameObject);
+        Debug.Log("Item has fallen off!");
     }
 
     private Vector3 GetPullDirection()
@@ -120,18 +124,15 @@ public class ThrowGameManager : MonoBehaviour
             if (hit.collider.GetComponent<Ipullable>() != null)
             {
                 var point = hit.point;
+
                 var pullPoint = new GameObject("pull point");
-                pullPoint.transform.position = point;
-                pullPoint.transform.rotation = Quaternion.identity;
+                pullPoint.transform.SetPositionAndRotation(point, Quaternion.identity);
                 pullPoint.transform.parent = hit.transform;
-
-                m_line = pullPoint.AddComponent<LineRenderer>();
-
-                m_line.startWidth = 1f;
-                m_line.endWidth = 1f;
 
                 m_lastDistance = hit.distance;
                 m_pullPoint = pullPoint.transform;
+                m_target = hit.collider.gameObject.transform;
+
                 return hit.collider.GetComponent<Ipullable>();
             }
         }
@@ -146,6 +147,7 @@ public class ThrowGameManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(m_target.transform.position, 5f);
     }
 
     #endregion Gizmos

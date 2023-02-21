@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager : Singleton<ScoreManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public int Score
     {
-        
+        get
+        {
+            return m_score;
+        }
+
+        set
+        {
+            m_score = value;
+
+            if (m_score > PlayerPrefs.GetInt("highscore"))
+                PlayerPrefs.SetInt("highscore", m_score);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int m_score;
 }

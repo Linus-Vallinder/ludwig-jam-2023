@@ -324,7 +324,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205614695}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &205614699
 Camera:
   m_ObjectHideFlags: 0
@@ -759,6 +759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 965353011}
   - component: {fileID: 965353010}
+  - component: {fileID: 965353012}
   m_Layer: 0
   m_Name: Persistant
   m_TagString: Untagged
@@ -797,6 +798,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &965353012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965353009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c2d4efe64d43d4b936dd3782cf3c4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1103438068 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5671165348599552693, guid: c969df8feddb5c349a56f624855237c8, type: 3}
