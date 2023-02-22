@@ -10,14 +10,21 @@ public class Dish : MonoBehaviour, Ipullable
 
     private void Awake()
     {
-        m_rigidBody = GetComponent<Rigidbody>();
+        m_rigidBody = gameObject.GetComponent<Rigidbody>();
         m_collider = GetComponent<MeshCollider>();
     }
 
     private void Start()
     {
+        transform.localScale = new(10, 10, 10);
         m_collider.convex = true;
         gameObject.layer = 8;
+    }
+
+    private void Update()
+    {
+        if (transform.position.y < -25f)
+            Destroy(gameObject);
     }
 
     #endregion Unity Methods

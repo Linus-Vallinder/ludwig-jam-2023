@@ -1,8 +1,11 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
+    public UnityEvent OnTimerStop;
+
     [SerializeField] private float m_time;
 
     [Header("Display")]
@@ -35,9 +38,9 @@ public class Timer : MonoBehaviour
     public void StopTimer()
     {
         m_isTiming = false;
+        OnTimerStop?.Invoke();
     }
 
-    private void UpdateDisplay()
-    {
-    }
+    private void UpdateDisplay() =>
+        m_display.text = $"{Mathf.Clamp(m_time - m_currentTime, 0, Mathf.Infinity):F1}";
 }

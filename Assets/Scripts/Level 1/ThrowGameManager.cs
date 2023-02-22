@@ -1,7 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class ThrowGameManager : MonoBehaviour
 {
@@ -19,11 +22,20 @@ public class ThrowGameManager : MonoBehaviour
     [SerializeField] private float m_dropDelay;
     [SerializeField] private UnityEvent m_onOff;
 
+    [Header("Respawn")]
+    [SerializeField] private Transform m_spawnPoint;
+
+    [SerializeField] private List<Transform> m_spawnables;
+
     private Ipullable m_currentTarget = null;
     private Transform m_target;
     private Transform m_pullPoint;
     private float m_lastDistance;
     private LineRenderer m_line;
+
+    private bool m_isFinished = false;
+
+    public bool Done { get; set; } = false;
 
     #region Unity Methods
 
@@ -45,19 +57,21 @@ public class ThrowGameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Done) return;
+
         if (m_currentTarget != null)
         {
             var dir = GetPullDirection();
             m_currentTarget.Pull(-dir, m_pullForce);
+        }
 
-            Debug.Log(IsOnTable());
-
-            if (!IsOnTable())
-            {
-                ClearItem(new());
-                StartCoroutine(FallOffTable());
-                StartRespawn();
-            }
+        if (!IsOnTable() && !m_isFinished && m_target)
+        {
+            m_isFinished = true;
+            m_target = null;
+            ClearItem(new());
+            StartCoroutine(FallOffTable());
+            StartRespawn();
         }
     }
 
@@ -65,43 +79,63 @@ public class ThrowGameManager : MonoBehaviour
 
     private bool IsOnTable()
     {
-        if (m_currentTarget == null) return false;
+        if (m_currentTarget == null || m_target == null) return false;
 
-        if (Physics.Raycast(m_pullPoint.position, Vector3.down, m_tableCheckDistance, m_onTableMask)) return true;
+        if (Physics.Raycast(m_target.position + new Vector3(0, 2, 0), Vector3.down, Mathf.Infinity, m_onTableMask)) return true;
 
         return false;
+    }
+
+    public void StartNow()
+    {
+        StartCoroutine(Respawn(0f));
+    }
+
+    public void StopMiniGame()
+    {
+        if (Done) return;
+        Done = true;
+        var handler = GameObject.Find("Paw Transition").GetComponent<TransitionHandler>();
+        var index = FindObjectOfType<GameOrder>().GetNextSceneIndex();
+
+        handler.StartTransition(() => SceneManager.LoadScene(index));
     }
 
     public void StartRespawn()
     {
         if (m_currentTarget != null) return;
         Debug.Log("Start Respawn");
-        StartCoroutine(Respawn());
+        StartCoroutine(Respawn(m_respawnDelay));
     }
 
-    private IEnumerator Respawn()
+    private IEnumerator Respawn(float delay)
     {
-        yield return null;
+        yield return new WaitForSeconds(delay);
+
+        var clone = Instantiate(m_spawnables[Random.Range(0, m_spawnables.Count)]);
+        var dish = clone.AddComponent<Dish>();
+        clone.transform.position = m_spawnPoint.position;
+
+        m_isFinished = false;
     }
 
     private IEnumerator FallOffTable()
     {
         yield return new WaitForSeconds(m_dropDelay);
         m_onOff?.Invoke();
-        if (m_target != null) Destroy(m_target.gameObject);
+        ScoreManager.Instance.Score += 100;
         Debug.Log("Item has fallen off!");
     }
 
-    private Vector3 GetPullDirection()
-    {
-        return m_pullPoint.position - GetWorldPointFromScreen(m_lastDistance);
-    }
+    private Vector3 GetPullDirection() =>
+        m_pullPoint.position - GetWorldPointFromScreen(m_lastDistance);
 
     private void GetItem(InputAction.CallbackContext cxt) =>
         m_currentTarget = GetPullable();
 
     private void ClearItem(InputAction.CallbackContext cxt)
     {
+        if (IsOnTable()) return;
         if (m_pullPoint) Destroy(m_pullPoint.gameObject);
         if (m_currentTarget != null) m_currentTarget = null;
         if (m_pullPoint != null) m_pullPoint = null;
@@ -147,7 +181,8 @@ public class ThrowGameManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(m_target.transform.position, 5f);
+        if (m_target)
+            Gizmos.DrawRay(new Ray(m_target.position, Vector3.down));
     }
 
     #endregion Gizmos

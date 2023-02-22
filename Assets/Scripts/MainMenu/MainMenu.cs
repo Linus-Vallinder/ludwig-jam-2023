@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private int m_gameIndex = 1;
+    [SerializeField] private int m_gameIndex = 2;
     [Space, SerializeField] private Transform m_main;
     [SerializeField] private Transform m_settings;
     private TransitionHandler m_transition;
