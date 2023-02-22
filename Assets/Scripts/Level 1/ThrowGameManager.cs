@@ -123,7 +123,9 @@ public class ThrowGameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(m_dropDelay);
         m_onOff?.Invoke();
+        CameraShake.Instance.StartShake(.2f, .1f);
         ScoreManager.Instance.Score += 100;
+
         Debug.Log("Item has fallen off!");
     }
 
