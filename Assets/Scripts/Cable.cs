@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Cable : MonoBehaviour
+public class Cable : MonoBehaviour, Ipullable
 {
+    [SerializeField] private float m_minPullPower = 1f;
+
     //Objects that will interact with the rope
-    public Transform whatTheRopeIsConnectedTo;
+    [Space] public Transform whatTheRopeIsConnectedTo;
 
     public Transform whatIsHangingFromTheRope;
 
@@ -12,7 +15,7 @@ public class Cable : MonoBehaviour
     private LineRenderer lineRenderer;
 
     //A list with all rope sections
-    public List<Vector3> allRopeSections = new List<Vector3>();
+    public List<Vector3> allRopeSections = new();
 
     //Rope data
     private float ropeLength = 1f;
@@ -33,7 +36,13 @@ public class Cable : MonoBehaviour
 
     private void Start()
     {
-        springJoint = whatTheRopeIsConnectedTo.GetComponent<SpringJoint>();
+        if (whatTheRopeIsConnectedTo)
+        {
+            springJoint = whatTheRopeIsConnectedTo.GetComponent<SpringJoint>();
+
+            if (!springJoint)
+                springJoint = whatTheRopeIsConnectedTo.AddComponent<SpringJoint>();
+        }
 
         //Init the line renderer we use to display the rope
         lineRenderer = GetComponent<LineRenderer>();
@@ -47,6 +56,8 @@ public class Cable : MonoBehaviour
 
     private void Update()
     {
+        if (whatIsHangingFromTheRope == null || whatIsHangingFromTheRope == null) return;
+
         //Add more/less rope
         UpdateWinch();
 
@@ -55,6 +66,8 @@ public class Cable : MonoBehaviour
     }
 
     #endregion Unity Methods
+
+    #region Cable Rendering
 
     //Update the spring constant and the length of the spring
     private void UpdateSpring()
@@ -92,8 +105,11 @@ public class Cable : MonoBehaviour
         //print(ropeMass);
 
         //Add the value to the spring
-        springJoint.spring = kRope * 1.0f;
-        springJoint.damper = kRope * 0.8f;
+        if (springJoint != null)
+        {
+            springJoint.spring = kRope * 1.0f;
+            springJoint.damper = kRope * 0.8f;
+        }
 
         //Update length of the rope
         springJoint.maxDistance = ropeLength;
@@ -169,6 +185,16 @@ public class Cable : MonoBehaviour
 
             //Need to recalculate the k-value because it depends on the length of the rope
             UpdateSpring();
+        }
+    }
+
+    #endregion Cable Rendering
+
+    public void Pull(Vector3 direction, float force)
+    {
+        if (direction.magnitude * force > m_minPullPower)
+        {
+            FindObjectOfType<CableMiniGameGeneric>().RemoveCable(this);
         }
     }
 }

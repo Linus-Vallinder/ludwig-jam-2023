@@ -119,6 +119,9 @@ public class ThrowGameManager : MonoBehaviour
         m_isFinished = false;
     }
 
+    private Vector3 GetPullDirection() =>
+    m_pullPoint.position - GetWorldPointFromScreen(m_lastDistance);
+
     private IEnumerator FallOffTable()
     {
         yield return new WaitForSeconds(m_dropDelay);
@@ -129,8 +132,6 @@ public class ThrowGameManager : MonoBehaviour
         Debug.Log("Item has fallen off!");
     }
 
-    private Vector3 GetPullDirection() =>
-        m_pullPoint.position - GetWorldPointFromScreen(m_lastDistance);
 
     private void GetItem(InputAction.CallbackContext cxt) =>
         m_currentTarget = GetPullable();
