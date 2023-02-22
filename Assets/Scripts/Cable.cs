@@ -42,6 +42,9 @@ public class Cable : MonoBehaviour, Ipullable
 
             if (!springJoint)
                 springJoint = whatTheRopeIsConnectedTo.AddComponent<SpringJoint>();
+
+            //Add the weight to what the rope is carrying
+            whatIsHangingFromTheRope.GetComponent<Rigidbody>().mass = loadMass;
         }
 
         //Init the line renderer we use to display the rope
@@ -49,9 +52,6 @@ public class Cable : MonoBehaviour, Ipullable
 
         //Init the spring we use to approximate the rope from point a to b
         UpdateSpring();
-
-        //Add the weight to what the rope is carrying
-        whatIsHangingFromTheRope.GetComponent<Rigidbody>().mass = loadMass;
     }
 
     private void Update()
@@ -109,10 +109,10 @@ public class Cable : MonoBehaviour, Ipullable
         {
             springJoint.spring = kRope * 1.0f;
             springJoint.damper = kRope * 0.8f;
-        }
 
-        //Update length of the rope
-        springJoint.maxDistance = ropeLength;
+            //Update length of the rope
+            springJoint.maxDistance = ropeLength;
+        }
     }
 
     //Display the rope with a line renderer
