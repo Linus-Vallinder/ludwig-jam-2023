@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Router.unity
     guid: b74692617e4709140a60d8425d7d7bd6
+  - enabled: 1
+    path: Assets/Scenes/Computer.unity
+    guid: 5fab2d939c0965245999c26c6c48a745
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: bca0ca702bdba9b47acea559ad33bc19, type: 2}

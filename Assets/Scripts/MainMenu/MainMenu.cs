@@ -25,7 +25,8 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        m_transition.StartTransition(() => SceneManager.LoadScene(m_gameIndex));
+        var index = FindObjectOfType<GameOrder>().GetNextSceneIndex();
+        m_transition.StartTransition(() => SceneManager.LoadScene(index));
     }
 
     public void OpenMain()
