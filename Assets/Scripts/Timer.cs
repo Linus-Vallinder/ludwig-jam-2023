@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
         if (m_isTiming)
             m_currentTime += Time.deltaTime;
 
-        if (m_currentTime >= m_time)
+        if (m_currentTime >= m_time && m_isTiming)
             StopTimer();
     }
 

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CableMiniGameGeneric : MonoBehaviour
 {
@@ -12,8 +14,11 @@ public class CableMiniGameGeneric : MonoBehaviour
 
     private Dictionary<Transform, Cable> m_activeConnections = new();
 
+    public event Action OnRemoveCable;
+
     public void SetupMiniGame()
     {
+        AddRandomCableConnection();
         AddRandomCableConnection();
     }
 
@@ -30,10 +35,8 @@ public class CableMiniGameGeneric : MonoBehaviour
         return empty.ToList()[Random.Range(0, empty.Count())];
     }
 
-    private Cable SpawnCable()
-    {
-        return Instantiate(m_cablePrefab);
-    }
+    private Cable SpawnCable() =>
+        Instantiate(m_cablePrefab);
 
     private IEnumerator StartSpawn(float delay)
     {
@@ -48,6 +51,7 @@ public class CableMiniGameGeneric : MonoBehaviour
         var key = m_connections.Where(x => x.position == cable.transform.position - m_connectionOffset).FirstOrDefault();
         m_activeConnections.Remove(key);
 
+        OnRemoveCable?.Invoke();
         Destroy(cable.gameObject);
 
         StartCoroutine(StartSpawn(1f));

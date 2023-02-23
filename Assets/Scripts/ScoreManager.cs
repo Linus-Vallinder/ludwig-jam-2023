@@ -15,6 +15,8 @@ public class ScoreManager : Singleton<ScoreManager>
 
             if (m_score > PlayerPrefs.GetInt("highscore"))
                 PlayerPrefs.SetInt("highscore", m_score);
+
+            Debug.Log($"Current Score: {value} | Current Highscore: {PlayerPrefs.GetInt("highscore")}");
         }
     }
 

@@ -19,7 +19,6 @@ public class Pull : MonoBehaviour
         m_pull.action.performed += cxt =>
         {
             m_pullable = GetPullable();
-            if (m_pullable != null) Debug.Log("You pulled that shit good!");
         };
 
         m_pull.action.canceled += cxt =>
@@ -28,6 +27,17 @@ public class Pull : MonoBehaviour
             m_pullTarget = null;
             m_pullable = null;
         };
+    }
+
+    private void OnDisable()
+    {
+        m_pull.action.performed -= cxt =>
+        {
+            m_pullable = GetPullable();
+            if (m_pullable != null) Debug.Log("You pulled that shit good!");
+        };
+
+        m_pull.action.canceled -= cxt => { if (m_pullPoint) Destroy(m_pullPoint.gameObject); m_pullTarget = null; m_pullable = null; };
     }
 
     private void Update()
