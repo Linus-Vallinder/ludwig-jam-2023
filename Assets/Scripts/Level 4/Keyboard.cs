@@ -37,6 +37,7 @@ public class Keyboard : MonoBehaviour
         if (key.IsHighlighted)
         {
             key.IsHighlighted = false;
+            CameraShake.Instance.StartShake(.1f, .075f);
         }
     }
 }

@@ -12,21 +12,19 @@ public class GameOrder : MonoBehaviour
 
     #region Unity Methods
 
-    private void Start()
-    {
+    private void Start() =>
         m_order = GenerateGameOrder().Take(m_miniGameAmount).ToList();
-    }
 
     #endregion Unity Methods
 
     public int GetNextSceneIndex()
     {
-        if (m_currentIndex >= m_miniGameOrder.Count)
+        if (m_currentIndex >= m_order.Count)
         {
             m_currentIndex = 0;
             return 1;
         }
-        var result = m_miniGameOrder[m_currentIndex];
+        var result = m_order[m_currentIndex];
         m_currentIndex++;
         return result;
     }

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfae74a38ed34a4b874d2b24ca57cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_minPullPower: 5
+  m_minPullPower: 1
   whatTheRopeIsConnectedTo: {fileID: 0}
   whatIsHangingFromTheRope: {fileID: 0}
   allRopeSections: []

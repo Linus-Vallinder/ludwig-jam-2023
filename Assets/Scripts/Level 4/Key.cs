@@ -36,7 +36,5 @@ public class Key : MonoBehaviour, IClickable
     public void Click()
     {
         OnClick?.Invoke(this);
-        if (m_highlighted)
-            CameraShake.Instance.StartShake(.1f, .075f);
     }
 }
