@@ -1,18 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KeyboardMiniGameLogic : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int m_concurentKeys = 3;
+
+    private Keyboard m_keyboard;
+    private bool m_isGoing;
+
+    #region Unity Methods
+
+    private void Awake()
     {
-        
+        m_keyboard = GetComponent<Keyboard>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (m_isGoing)
+        {
+            if (m_keyboard.GetActiveKeys().Count() < 3)
+                m_keyboard.HighlightRandomKey();
+        }
+    }
+
+    #endregion Unity Methods
+
+    public void StartMiniGame()
+    {
+        m_isGoing = true;
+    }
+
+    public void StopMiniGame()
+    {
+        m_isGoing = false;
+
+        var handler = GameObject.Find("Paw Transition").GetComponent<TransitionHandler>();
+        var index = FindObjectOfType<GameOrder>().GetNextSceneIndex();
+        handler.StartTransition(() => SceneManager.LoadScene(index));
     }
 }

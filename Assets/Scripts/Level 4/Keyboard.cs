@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Keyboard : MonoBehaviour
@@ -20,8 +21,22 @@ public class Keyboard : MonoBehaviour
 
     #endregion Unity Methods
 
+    public IEnumerable<Key> GetActiveKeys() =>
+        m_keys.Where(key => key.IsHighlighted == true);
+
+    public void HighlightRandomKey()
+    {
+        var keys = m_keys.Where(key => !key.IsHighlighted).ToList();
+        keys[Random.Range(0, keys.Count)].IsHighlighted = true;
+    }
+
     private void OnClick(Key key)
     {
         Debug.Log($"{key.name} has been clicked!");
+
+        if (key.IsHighlighted)
+        {
+            key.IsHighlighted = false;
+        }
     }
 }

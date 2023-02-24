@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Computer.unity
     guid: 5fab2d939c0965245999c26c6c48a745
+  - enabled: 1
+    path: Assets/Scenes/Keyboard.unity
+    guid: c8da96be211249e4b97276b5cca303bf
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: bca0ca702bdba9b47acea559ad33bc19, type: 2}
