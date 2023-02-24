@@ -9,15 +9,11 @@ public class Keyboard : MonoBehaviour
 
     #region Unity Methods
 
-    private void Start()
-    {
+    private void Start() =>
         m_keys.ForEach(key => key.OnClick += this.OnClick);
-    }
 
-    private void OnDisable()
-    {
+    private void OnDisable() =>
         m_keys.ForEach(key => key.OnClick -= this.OnClick);
-    }
 
     #endregion Unity Methods
 

@@ -23,7 +23,7 @@ public class Pull : MonoBehaviour
 
         m_pull.action.canceled += cxt =>
         {
-            if(m_pullPoint) Destroy(m_pullPoint.gameObject);
+            if (m_pullPoint) Destroy(m_pullPoint.gameObject);
             m_pullTarget = null;
             m_pullable = null;
         };
@@ -42,7 +42,7 @@ public class Pull : MonoBehaviour
 
     private void Update()
     {
-        if(m_pullable != null && m_pullPoint != null)
+        if (m_pullable != null && m_pullPoint != null)
         {
             m_pullable.Pull(GetPullDirection(), 1.5f);
         }
@@ -53,16 +53,16 @@ public class Pull : MonoBehaviour
     private Vector3 GetPullDirection() =>
         m_pullPoint.position - GetWorldPointFromScreen(m_lastDistance);
 
-
     public Vector3 GetWorldPointFromScreen(float dist) =>
         PixelCamera.Instance.ScreenToRay(Input.mousePosition).GetPoint(dist);
-
 
     public Ipullable GetPullable()
     {
         var cam = PixelCamera.Instance;
         if (Physics.Raycast(cam.ScreenToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity, m_layer))
         {
+            CameraShake.Instance.StartShake(.05f, .05f);
+
             if (hit.collider.GetComponent<Ipullable>() != null)
             {
                 var point = hit.point;

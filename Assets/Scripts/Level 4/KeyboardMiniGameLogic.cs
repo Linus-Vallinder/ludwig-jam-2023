@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,10 +12,8 @@ public class KeyboardMiniGameLogic : MonoBehaviour
 
     #region Unity Methods
 
-    private void Awake()
-    {
+    private void Awake() =>
         m_keyboard = GetComponent<Keyboard>();
-    }
 
     private void Update()
     {
@@ -27,10 +26,8 @@ public class KeyboardMiniGameLogic : MonoBehaviour
 
     #endregion Unity Methods
 
-    public void StartMiniGame()
-    {
+    public void StartMiniGame() =>
         m_isGoing = true;
-    }
 
     public void StopMiniGame()
     {

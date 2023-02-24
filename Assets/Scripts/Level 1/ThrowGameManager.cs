@@ -8,7 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class ThrowGameManager : MonoBehaviour
 {
-    [SerializeField] private float m_pullForce = 5f;
+    [SerializeField] private MoneyVisual m_visual;
+
+    [Space, SerializeField] private float m_pullForce = 5f;
 
     [Space, SerializeField] private InputActionReference m_pull;
 
@@ -68,9 +70,9 @@ public class ThrowGameManager : MonoBehaviour
         if (!IsOnTable() && !m_isFinished && m_target)
         {
             m_isFinished = true;
+            StartCoroutine(FallOffTable(m_target.GetComponent<MeshRenderer>()));
             m_target = null;
             ClearItem(new());
-            StartCoroutine(FallOffTable());
             StartRespawn();
         }
     }
@@ -86,10 +88,8 @@ public class ThrowGameManager : MonoBehaviour
         return false;
     }
 
-    public void StartNow()
-    {
+    public void StartNow() =>
         StartCoroutine(Respawn(0f));
-    }
 
     public void StopMiniGame()
     {
@@ -122,16 +122,21 @@ public class ThrowGameManager : MonoBehaviour
     private Vector3 GetPullDirection() =>
     m_pullPoint.position - GetWorldPointFromScreen(m_lastDistance);
 
-    private IEnumerator FallOffTable()
+    private IEnumerator FallOffTable(Renderer target)
     {
         yield return new WaitForSeconds(m_dropDelay);
         m_onOff?.Invoke();
         CameraShake.Instance.StartShake(.2f, .1f);
-        ScoreManager.Instance.Score += 100;
+        var points = VolumeToPoints(target.bounds.size);
+
+        m_visual.Amount += points;
+        ScoreManager.Instance.Score += points;
 
         Debug.Log("Item has fallen off!");
     }
 
+    private int VolumeToPoints(Vector3 size) =>
+        Mathf.FloorToInt(size.x * size.y * size.z) / 10;
 
     private void GetItem(InputAction.CallbackContext cxt) =>
         m_currentTarget = GetPullable();

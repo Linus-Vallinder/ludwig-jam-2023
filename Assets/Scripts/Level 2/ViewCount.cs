@@ -6,7 +6,7 @@ public class ViewCount : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_text;
 
     public int Count { get; set; } = 10000;
-    private float m_percentageMovementRange = .15f;
+    private float m_percentageMovementRange = .05f;
     private float m_min, m_max;
 
     private float m_target;
@@ -16,8 +16,8 @@ public class ViewCount : MonoBehaviour
 
     private void Start()
     {
-        m_min = .1f;
-        m_max = 1f;
+        m_min = 1f;
+        m_max = 2f;
 
         ChangeNumber();
     }

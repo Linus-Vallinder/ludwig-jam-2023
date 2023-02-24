@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameOrder : MonoBehaviour
 {
-    [SerializeField] private int m_miniGameAmount = 10;
+    [SerializeField] private int m_selectMiniGame = 2;
+    [SerializeField] private bool m_useSelectMiniGame = false;
+
+    [Space, SerializeField] private int m_miniGameAmount = 10;
     [Space, SerializeField] private List<int> m_miniGameOrder = new();
 
     private List<int> m_order = new();
@@ -19,6 +22,9 @@ public class GameOrder : MonoBehaviour
 
     public int GetNextSceneIndex()
     {
+        if (m_useSelectMiniGame)
+            return m_selectMiniGame;
+
         if (m_currentIndex >= m_order.Count)
         {
             m_currentIndex = 0;

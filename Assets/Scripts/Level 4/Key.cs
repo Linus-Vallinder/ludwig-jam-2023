@@ -27,14 +27,10 @@ public class Key : MonoBehaviour, IClickable
 
     #endregion Unity Methods
 
-    private void Highlight()
-    {
+    private void Highlight() =>
         m_highlightEffect.gameObject.SetActive(IsHighlighted);
-    }
 
     //Maybe to some tweening like we are moving the keys
     public void Click()
-    {
-        OnClick?.Invoke(this);
-    }
+        => OnClick?.Invoke(this);
 }

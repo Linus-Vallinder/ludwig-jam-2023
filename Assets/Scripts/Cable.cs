@@ -5,14 +5,12 @@ using UnityEngine;
 public class Cable : MonoBehaviour, Ipullable
 {
     [SerializeField] private float m_minPullPower = 1f;
+    [SerializeField] private LineRenderer lineRenderer;
 
     //Objects that will interact with the rope
     [Space] public Transform whatTheRopeIsConnectedTo;
 
     public Transform whatIsHangingFromTheRope;
-
-    //Line renderer used to display the rope
-    private LineRenderer lineRenderer;
 
     //A list with all rope sections
     public List<Vector3> allRopeSections = new();
@@ -48,7 +46,7 @@ public class Cable : MonoBehaviour, Ipullable
         }
 
         //Init the line renderer we use to display the rope
-        lineRenderer = GetComponent<LineRenderer>();
+        if(lineRenderer == null) lineRenderer = GetComponent<LineRenderer>();
 
         //Init the spring we use to approximate the rope from point a to b
         UpdateSpring();

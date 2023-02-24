@@ -31,6 +31,7 @@ public class Dish : MonoBehaviour, Ipullable
 
     void Ipullable.Pull(Vector3 direction, float force)
     {
+        m_rigidBody.AddTorque(direction.normalized * 1.5f);
         m_rigidBody.AddForce(direction.normalized * force, ForceMode.Force);
     }
 }
