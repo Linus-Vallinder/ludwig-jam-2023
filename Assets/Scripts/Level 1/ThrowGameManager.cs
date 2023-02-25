@@ -98,7 +98,7 @@ public class ThrowGameManager : MonoBehaviour
         var handler = GameObject.Find("Paw Transition").GetComponent<TransitionHandler>();
         var index = FindObjectOfType<GameOrder>().GetNextSceneIndex();
 
-        ReactionHandler.OnStop?.Invoke();
+        ReactionHandler.Instance.StopReact();
         handler.StartTransition(() => SceneManager.LoadScene(index));
     }
 

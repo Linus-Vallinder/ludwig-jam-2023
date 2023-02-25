@@ -483,6 +483,85 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151753475}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &161597558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 161597560}
+  - component: {fileID: 161597559}
+  m_Layer: 0
+  m_Name: Reactions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &161597559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161597558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ec1fc7ffa3b7d45ae26f190c0cb72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_reactions:
+  - Reaction: 0
+    Message: Coots, you little devil! You messed up my game!
+  - Reaction: 0
+    Message: Well, there goes my ranking. Thanks a lot, Coots.
+  - Reaction: 0
+    Message: I can't believe this. How did Coots even manage to mess with my computer?
+  - Reaction: 0
+    Message: Coots, I love you, but you're really testing my patience right now.
+  - Reaction: 0
+    Message: I think Coots is secretly trying to sabotage my chess career
+  - Reaction: 0
+    Message: 'Note to self: don''t leave my computer unattended when Coots is around'
+  - Reaction: 0
+    Message: I can't believe I just lost a game of chess because of a cat. This is
+      ridiculous
+  - Reaction: 0
+    Message: Coots, you may have won this battle, but the war is far from over
+  - Reaction: 3
+    Message: I have to admit, that was pretty funny
+  - Reaction: 3
+    Message: Coots, you may have just made Ludwig lose a game of chess, but you've
+      won our hearts
+  - Reaction: 3
+    Message: I think Coots is trying to get revenge on Ludwig for something
+  - Reaction: 3
+    Message: Looks like Ludwig's going to have to spend some extra time practicing
+      his chess skills to make up for this
+  - Reaction: 3
+    Message: Coots, you may be cute, but you're also a menace
+  - Reaction: 3
+    Message: Well, Ludwig may have lost this game, but at least we got some entertainment
+      out of it thanks to Coots
+  m_min: 5
+  m_max: 7.5
+--- !u!4 &161597560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 161597558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &194039776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3290,16 +3369,48 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1842898856}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 161597559}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StopMiniGame
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopReactions
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GamingCabelGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RandomReaction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928278, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: m_Name

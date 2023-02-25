@@ -481,6 +481,87 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113088712}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &138179461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138179463}
+  - component: {fileID: 138179462}
+  m_Layer: 0
+  m_Name: Reactions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &138179462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138179461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ec1fc7ffa3b7d45ae26f190c0cb72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_reactions:
+  - Reaction: 3
+    Message: I am not cleaning up after this stupid cat.
+  - Reaction: 0
+    Message: Coots! Why did you break my best plate. I was NOT going to cook on those!
+  - Reaction: 0
+    Message: Stop messing with the wi-fi! I am watching my favourite game dev YouTuber
+      Globox!
+  - Reaction: 0
+    Message: Oh, come on! Not now!
+  - Reaction: 0
+    Message: Are you kidding me? This always happens at the worst times.
+  - Reaction: 0
+    Message: Looks like we've hit a bit of a technical difficulty, folks.
+  - Reaction: 0
+    Message: Well, this is just fantastic. I love losing Wi-Fi in the middle of a
+      stream.
+  - Reaction: 0
+    Message: Looks like the Wi-Fi gods have abandoned me once again.
+  - Reaction: 0
+    Message: I swear, my Wi-Fi is like a fickle lover. One minute it's here, the
+      next it's gone.
+  - Reaction: 0
+    Message: I apologize for the interruption, guys. Technical difficulties are just
+      a part of streaming, I suppose
+  - Reaction: 0
+    Message: Well, I guess it's time for a good old-fashioned reset. BRB.
+  - Reaction: 3
+    Message: Come on, Ludwig, you know you have to pay your internet bill if you
+      want to keep streaming
+  - Reaction: 3
+    Message: Let's take this opportunity to appreciate the fact that I have better
+      internet than Ludwig
+  - Reaction: 3
+    Message: Well, at least now we get a break from Ludwig's constant talking
+  m_min: 5
+  m_max: 7.5
+--- !u!4 &138179463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138179461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &213740254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,16 +2434,48 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1842898856}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 138179462}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StopMiniGame
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopReactions
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: RouterPullMiniGame, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RandomReaction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928278, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: m_Name

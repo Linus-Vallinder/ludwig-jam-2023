@@ -1,18 +1,64 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
+[Serializable]
+public class ReactionData
+{
+    [Header("Reaction Data")]
+    public Reaction Reaction;
+    [Space, TextArea] public string Message;
+}
 
 public class RandomReaction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private List<ReactionData> m_reactions = new();
+
+    [SerializeField] private float m_min, m_max;
+
+    private bool m_stopped = true;
+    
+    private float m_target = 3;
+    private float m_currentTime = 0;
+    #region Unity Methods
+
+    private void Start()
     {
-        
+        m_stopped = false;
+        m_target = Random.Range(m_min, m_max);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if(m_stopped) return;
         
+        if (m_currentTime < m_target) m_currentTime += Time.deltaTime;
+        else if (m_currentTime > m_target)
+        {
+            m_target = Random.Range(m_min, m_max);
+            m_currentTime = 0;
+
+            ShowRandomReaction();
+        }
+    }
+
+    #endregion
+    
+    private ReactionData GetRandomReaction() =>
+        m_reactions[Random.Range(0, m_reactions.Count)];
+
+    public void StopReactions()
+    {
+        m_stopped = true;
+        ReactionHandler.Instance.StopReact();
+    }
+    
+    public void ShowRandomReaction()
+    {
+        m_stopped = false;
+        var reaction = GetRandomReaction();
+        ReactionHandler.Instance.React(reaction.Reaction, reaction.Message);
     }
 }

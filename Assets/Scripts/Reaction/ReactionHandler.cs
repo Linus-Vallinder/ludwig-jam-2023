@@ -23,42 +23,17 @@ public class ReactionHandler : Singleton<ReactionHandler>
     [SerializeField] private TMP_Text m_text;
     [SerializeField] private Image m_image;
     [Space, SerializeField] private Transform m_cam;
-    
-    public static Action<Reaction, string> OnReact;
-    public static Action OnStop;
-    
-    #region Unity Methods
 
-    private void Start()
+    public void StopReact()
     {
-        OnReact += React;
-        OnStop += StopReact;
-    }
-
-    private void OnDisable()
-    {
-        OnReact -= React;
-        OnStop += StopReact;
-    }
-
-    #endregion
-
-    private void StopReact()
-    {
-        m_cam.GetComponent<Animator>().Play("Exit");
-        m_text.text = string.Empty;;
+        m_cam.GetComponent<Animator>().Play("ExitReact");
+        m_text.text = string.Empty;
         m_image.sprite = null;
-        m_cam.gameObject.SetActive(false);
     }
 
-    private void React(Reaction reaction, string message)
+    public void React(Reaction reaction, string message)
     {
-        if (!m_cam.gameObject.activeInHierarchy)
-        {
-            m_cam.gameObject.SetActive(true);
-            m_cam.GetComponent<Animator>().Play("Entry");
-        }
-        
+        m_cam.GetComponent<Animator>().Play("Entry");
         m_cam.gameObject.SetActive(true);
         SetReactionImage(reaction: reaction);
         SetMessageBubble(message);

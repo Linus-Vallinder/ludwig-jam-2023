@@ -806,6 +806,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee2521ddaace9d4ca776c4ff567e6d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1011989654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011989655}
+  - component: {fileID: 1011989656}
+  m_Layer: 0
+  m_Name: Reactions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1011989655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011989654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1011989656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011989654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ec1fc7ffa3b7d45ae26f190c0cb72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_reactions:
+  - Reaction: 3
+    Message: I am not cleaning up after this stupid cat.
+  - Reaction: 0
+    Message: Coots! Why did you break my best plate. I was NOT going to cook on those!
+  - Reaction: 0
+    Message: Where are all of my cups?
+  - Reaction: 0
+    Message: I swear, this cat has a vendetta against all of my belongings
+  - Reaction: 0
+    Message: Why do I even bother buying nice things when I have a cat that just
+      destroys everything?
+  - Reaction: 0
+    Message: 'Note to self: invest in some sturdier bookshelves to withstand Coots''
+      destruction'
+  - Reaction: 0
+    Message: Oh no, not again! Coots, you're making a mess
+  - Reaction: 3
+    Message: Coots, you're a cat, not a wrecking ball. Stop destroying everything
+  - Reaction: 3
+    Message: 'Well, I guess we know who''s really in charge here. Hint: it''s not
+      Ludwig'
+  - Reaction: 3
+    Message: I think Coots is secretly trying to get his own Twitch channel by causing
+      all this drama on Ludwig's stream
+  - Reaction: 3
+    Message: I think Coots is just trying to assert his dominance over Ludwig's apartment
+  - Reaction: 3
+    Message: Looks like Coots is trying to spice up Ludwig's stream with some impromptu
+      chaos
+  m_min: 5
+  m_max: 7.5
 --- !u!1 &1101123644 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5671165348599552693, guid: c969df8feddb5c349a56f624855237c8, type: 3}
@@ -11148,9 +11224,41 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 152868938}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1011989656}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopReactions
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RandomReaction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928278, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: m_Name
       value: Timer

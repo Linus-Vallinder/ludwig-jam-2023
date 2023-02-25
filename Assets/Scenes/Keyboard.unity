@@ -3481,6 +3481,84 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1229032820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229032822}
+  - component: {fileID: 1229032821}
+  m_Layer: 0
+  m_Name: Reactions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1229032821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229032820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ec1fc7ffa3b7d45ae26f190c0cb72f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_reactions:
+  - Reaction: 0
+    Message: What in the world? How did Coots even manage to type on my computer?
+  - Reaction: 0
+    Message: Coots, what are you trying to tell me with this strange message?
+  - Reaction: 0
+    Message: I guess Coots has been secretly practicing his typing skills.
+  - Reaction: 0
+    Message: This is either the coolest or the scariest thing I've ever seen a cat
+      do
+  - Reaction: 0
+    Message: I'm not sure if I should be impressed or concerned right now.
+  - Reaction: 0
+    Message: I think Coots just wrote a better message than anything I've ever written
+      in my life
+  - Reaction: 0
+    Message: Coots, I don't know what you're trying to say, but I'm listening
+  - Reaction: 0
+    Message: Well, I guess Coots just proved that cats really can do anything they
+      set their minds to
+  - Reaction: 0
+    Message: I'm not sure what just happened, but I think Coots just became my new
+      writing partner
+  - Reaction: 3
+    Message: I think Coots is trying to tell us something important
+  - Reaction: 3
+    Message: This is either the coolest or the most terrifying thing I've ever seen
+      a cat do
+  - Reaction: 3
+    Message: I don't know how Coots managed to do that, but I'm impressed
+  - Reaction: 3
+    Message: I don't know how Coots managed to do that, but I'm impressed
+  m_min: 5
+  m_max: 7.5
+--- !u!4 &1229032822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229032820}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1376382814
 Mesh:
   m_ObjectHideFlags: 0
@@ -4204,16 +4282,48 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1842898859}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1229032821}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StopMiniGame
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StopReactions
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: KeyboardMiniGameLogic, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RandomReaction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598329089287928272, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
+      propertyPath: OnTimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2598329089287928278, guid: a5c3c5c7623bdfe44863e9f848c1d59a, type: 3}
       propertyPath: m_Name
@@ -4781,6 +4891,10 @@ MonoBehaviour:
   - Pog
   - Poggers
   - Slime
+  - YouTube
+  - Money
+  - QT
+  - Globox
   m_WPM: {fileID: 482693792}
 --- !u!114 &1842898858
 MonoBehaviour:
