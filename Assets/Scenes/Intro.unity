@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_selectMiniGame: 5
-  m_useSelectMiniGame: 1
+  m_useSelectMiniGame: 0
   m_miniGameAmount: 15
   m_miniGameOrder: 05000000040000000300000002000000
   m_finalScene: 6
