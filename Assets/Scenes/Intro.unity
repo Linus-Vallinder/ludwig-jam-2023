@@ -1138,9 +1138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f2b547da0e35a4391380fcaf220f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_selectMiniGame: 0
-  m_useSelectMiniGame: 0
-  m_miniGameAmount: 8
+  m_selectMiniGame: 5
+  m_useSelectMiniGame: 1
+  m_miniGameAmount: 15
   m_miniGameOrder: 05000000040000000300000002000000
   m_finalScene: 6
 --- !u!114 &965353014
@@ -1689,6 +1689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a7deb5151bb1f4d9d67ed9a5864a11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_clip: {fileID: 8300000, guid: 7231dce37ff590342a80ac0dd8ed19b1, type: 3}
   m_transitionTime: 1
   m_start: Start
   m_end: End

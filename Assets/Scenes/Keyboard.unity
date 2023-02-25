@@ -3078,13 +3078,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 269.9
       objectReference: {fileID: 0}
+    - target: {fileID: 3216444149317219449, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444149317219449, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 14.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3216444149317219450, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
       propertyPath: m_text
-      value: Walk Over Keyboard
+      value: 'Write a Script '
       objectReference: {fileID: 0}
     - target: {fileID: 3216444149317219450, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
       propertyPath: m_fontSize
-      value: 30.85
+      value: 38.15
       objectReference: {fileID: 0}
     - target: {fileID: 3216444149317219450, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
       propertyPath: m_enableAutoSizing
@@ -3225,6 +3233,22 @@ PrefabInstance:
     - target: {fileID: 3216444150478332719, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444150604955944, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444150604955944, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444150604955945, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_text
+      value: Get Ludwig Cancelled Fast!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444150604955951, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}

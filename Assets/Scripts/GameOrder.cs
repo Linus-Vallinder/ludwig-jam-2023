@@ -37,7 +37,7 @@ public class GameOrder : MonoBehaviour
         return result;
     }
 
-    private List<int> GenerateGameOrder()
+    private IEnumerable<int> GenerateGameOrder()
     {
         var result = new List<int>();
         var tries = 0;

@@ -2235,13 +2235,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 269.9
       objectReference: {fileID: 0}
+    - target: {fileID: 3216444149317219449, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444149317219449, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 22.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3216444149317219450, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
       propertyPath: m_text
-      value: Interrupt Gaming Session
+      value: Ruin A Gaming Session
       objectReference: {fileID: 0}
     - target: {fileID: 3216444149317219450, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
       propertyPath: m_fontSize
-      value: 24.15
+      value: 28.5
       objectReference: {fileID: 0}
     - target: {fileID: 3216444149317219450, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
       propertyPath: m_enableAutoSizing
@@ -2370,6 +2378,22 @@ PrefabInstance:
     - target: {fileID: 3216444150478332719, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444150604955944, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444150604955944, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444150604955945, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_text
+      value: Make Horrible Blunders
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216444150604955951, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a87d87df216cda46a193ae1ad278b13, type: 3}

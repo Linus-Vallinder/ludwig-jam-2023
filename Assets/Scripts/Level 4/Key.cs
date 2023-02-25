@@ -5,6 +5,8 @@ public class Key : MonoBehaviour, IClickable
 {
     [SerializeField] private Transform m_highlightEffect;
 
+    private Animator m_animator;
+    
     public bool IsHighlighted
     {
         get => m_highlighted;
@@ -22,6 +24,11 @@ public class Key : MonoBehaviour, IClickable
 
     #region Unity Methods
 
+    private void Awake()
+    {
+        m_animator = GetComponent<Animator>();
+    }
+
     private void Start() =>
         IsHighlighted = false;
 
@@ -30,7 +37,9 @@ public class Key : MonoBehaviour, IClickable
     private void Highlight() =>
         m_highlightEffect.gameObject.SetActive(IsHighlighted);
 
-    //Maybe to some tweening like we are moving the keys
     public void Click()
-        => OnClick?.Invoke(this);
+    {
+        m_animator.Play("Key");
+        OnClick?.Invoke(this);
+    }
 }
