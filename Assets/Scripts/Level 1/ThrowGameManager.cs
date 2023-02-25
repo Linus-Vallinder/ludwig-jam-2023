@@ -28,6 +28,8 @@ public class ThrowGameManager : MonoBehaviour
     [Header("Respawn")]
     [SerializeField] private Transform m_spawnPoint;
 
+    [SerializeField] private Transform m_targetPoint;
+
     [SerializeField] private List<Transform> m_spawnables;
 
     private Ipullable m_currentTarget = null;
@@ -83,7 +85,6 @@ public class ThrowGameManager : MonoBehaviour
     private bool IsOnTable()
     {
         if (m_currentTarget == null || m_target == null) return false;
-
         return Physics.Raycast(m_target.position + new Vector3(0, 2, 0), Vector3.down, Mathf.Infinity, m_onTableMask);
     }
 
@@ -97,6 +98,7 @@ public class ThrowGameManager : MonoBehaviour
         var handler = GameObject.Find("Paw Transition").GetComponent<TransitionHandler>();
         var index = FindObjectOfType<GameOrder>().GetNextSceneIndex();
 
+        ReactionHandler.OnStop?.Invoke();
         handler.StartTransition(() => SceneManager.LoadScene(index));
     }
 
@@ -112,6 +114,7 @@ public class ThrowGameManager : MonoBehaviour
 
         var clone = Instantiate(m_spawnables[Random.Range(0, m_spawnables.Count)]);
         var dish = clone.AddComponent<Dish>();
+        dish.SetTarget(m_targetPoint.position, 6f);
         clone.transform.position = m_spawnPoint.position;
 
         m_isFinished = false;
@@ -134,7 +137,7 @@ public class ThrowGameManager : MonoBehaviour
         ScoreManager.Instance.LostMoney += points;
     }
 
-    private int VolumeToPoints(Vector3 size) =>
+    private static int VolumeToPoints(Vector3 size) =>
         Mathf.FloorToInt(size.x * size.y * size.z) / 10;
 
     private void GetItem(InputAction.CallbackContext cxt) =>
