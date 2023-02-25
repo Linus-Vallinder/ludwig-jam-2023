@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXManager : MonoBehaviour
+public class SFXManager : Singleton<SFXManager>
 {
     [Header("Audio Manager Options")]
     [SerializeField] private GameObject sourcePrefab;
@@ -39,7 +39,7 @@ public class SFXManager : MonoBehaviour
         }
     }
 
-    private void PlaySound(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
+    public void PlaySound(AudioClip clip, float volume = 1.0f, float pitch = 1.0f)
     {
         var audioObject = m_pool[0] as GameObject;
 

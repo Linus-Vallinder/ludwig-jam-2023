@@ -887,6 +887,7 @@ MonoBehaviour:
   m_minPullPower: 1
   lineRenderer: {fileID: 4314407192098349527}
   m_sparkEffect: {fileID: 2960896050752754877, guid: 3b4b5b8c2b3e05c4f965450da8b5733c, type: 3}
+  m_pullClip: {fileID: 8300000, guid: c4ce006cf0b903f409e6655ae1e3a793, type: 3}
   m_mats:
   - {fileID: 2100000, guid: 2a8adb1fa48fad94aa1a625d1eba6fa5, type: 2}
   - {fileID: 2100000, guid: 9b8dc2ec5db01d34f92f37861cc226da, type: 2}

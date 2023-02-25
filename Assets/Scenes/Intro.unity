@@ -926,9 +926,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f2b547da0e35a4391380fcaf220f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_selectMiniGame: 3
+  m_selectMiniGame: 2
   m_useSelectMiniGame: 0
-  m_miniGameAmount: 16
+  m_miniGameAmount: 5
   m_miniGameOrder: 05000000040000000300000002000000
   m_finalScene: 6
 --- !u!114 &965353014
@@ -944,6 +944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_particleSystem: {fileID: 2589369066529349557, guid: c2aa52d61083c3042b893e5984d90223, type: 3}
+  m_clip: {fileID: 8300000, guid: 601adc283bfd4874c9ed5e6139e48792, type: 3}
   m_layer:
     serializedVersion: 2
     m_Bits: 769
@@ -960,7 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6faa871990180994aba13ae8c12f9aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sourcePrefab: {fileID: 8181570275656427178, guid: 13cab82ec9add144392b5074988fe779, type: 3}
+  sourcePrefab: {fileID: 8181570275656427178, guid: 13cab82ec9add144392b5074988fe779, type: 3}
 --- !u!1 &1103438068 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5671165348599552693, guid: c969df8feddb5c349a56f624855237c8, type: 3}

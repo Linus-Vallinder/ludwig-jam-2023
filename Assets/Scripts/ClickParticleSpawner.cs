@@ -4,10 +4,12 @@ using UnityEngine.InputSystem;
 public class ClickParticleSpawner : MonoBehaviour
 {
     [SerializeField] private ParticleSystem m_particleSystem;
-
+    [SerializeField] private AudioClip m_clip;
+    
     [SerializeField] private LayerMask m_layer;
     [Space, SerializeField] private InputActionReference m_click;
-
+    
+    
     #region Unity Methods
 
     private void Start()
@@ -24,10 +26,10 @@ public class ClickParticleSpawner : MonoBehaviour
 
     private void Click()
     {
-        if (Physics.Raycast(PixelCamera.Instance.ScreenToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity, m_layer))
-        {
-            var position = hit.point;
-            Instantiate(m_particleSystem, position, Quaternion.identity);
-        }
+        if (!Physics.Raycast(PixelCamera.Instance.ScreenToRay(Input.mousePosition), out var hit, Mathf.Infinity,
+                m_layer)) return;
+        var position = hit.point;
+        SFXManager.Instance.PlaySound(m_clip, Random.Range(.2f, .25f), Random.Range(.95f, 1.05f));
+        Instantiate(m_particleSystem, position, Quaternion.identity);
     }
 }

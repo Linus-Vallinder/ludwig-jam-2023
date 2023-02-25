@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class ThrowGameManager : MonoBehaviour
 {
     [SerializeField] private MoneyVisual m_visual;
+    [SerializeField] private List<AudioClip> m_breakingSounds;
 
     [Space, SerializeField] private float m_pullForce = 5f;
 
@@ -37,7 +38,7 @@ public class ThrowGameManager : MonoBehaviour
 
     private bool m_isFinished = false;
 
-    public bool Done { get; set; } = false;
+    private bool Done { get; set; } = false;
 
     #region Unity Methods
 
@@ -83,9 +84,7 @@ public class ThrowGameManager : MonoBehaviour
     {
         if (m_currentTarget == null || m_target == null) return false;
 
-        if (Physics.Raycast(m_target.position + new Vector3(0, 2, 0), Vector3.down, Mathf.Infinity, m_onTableMask)) return true;
-
-        return false;
+        return Physics.Raycast(m_target.position + new Vector3(0, 2, 0), Vector3.down, Mathf.Infinity, m_onTableMask);
     }
 
     public void StartNow() =>
@@ -104,7 +103,6 @@ public class ThrowGameManager : MonoBehaviour
     public void StartRespawn()
     {
         if (m_currentTarget != null) return;
-        Debug.Log("Start Respawn");
         StartCoroutine(Respawn(m_respawnDelay));
     }
 
@@ -126,14 +124,14 @@ public class ThrowGameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(m_dropDelay);
         m_onOff?.Invoke();
+        
+        SFXManager.Instance.PlayRandomSoundFromArray(m_breakingSounds.ToArray(), Random.Range(.5f, .55f), Random.Range(.95f, 1.05f));
         CameraShake.Instance.StartShake(.2f, .1f);
         var points = VolumeToPoints(target.bounds.size);
 
         m_visual.Amount += points;
         ScoreManager.Instance.Score += points;
         ScoreManager.Instance.LostMoney += points;
-
-        Debug.Log("Item has fallen off!");
     }
 
     private int VolumeToPoints(Vector3 size) =>

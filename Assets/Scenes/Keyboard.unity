@@ -4720,7 +4720,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1842898853
 Transform:
@@ -4768,6 +4768,12 @@ MonoBehaviour:
   - {fileID: 775944055}
   - {fileID: 2065392105}
   - {fileID: 1427317830}
+  m_clicks:
+  - {fileID: 8300000, guid: 0dcad18d7415a6342a4a97582ca3ded4, type: 3}
+  - {fileID: 8300000, guid: d6ea68d5819f26b49aa089d2b597118b, type: 3}
+  - {fileID: 8300000, guid: aa65b879820259e48a8377162c51cc2d, type: 3}
+  - {fileID: 8300000, guid: 4a7275946a3c03645854117c48453560, type: 3}
+  - {fileID: 8300000, guid: f32933cd7804a034698ab165d62fe967, type: 3}
   m_words:
   - Ludwig
   - Coots

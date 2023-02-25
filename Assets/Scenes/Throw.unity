@@ -266,6 +266,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_visual: {fileID: 1540319162}
+  m_breakingSounds:
+  - {fileID: 8300000, guid: 3d5b935fd737d5840a1867d49d565ce9, type: 3}
+  - {fileID: 8300000, guid: 60a7c5a0dc2ae0b45bc46f492aaf0fee, type: 3}
+  - {fileID: 8300000, guid: aaf7b28810e799547987f5fe5a888296, type: 3}
   m_pullForce: 8
   m_pull: {fileID: -5221509257970782289, guid: ec564e6cba10b954992c68a627edb237, type: 3}
   m_layer:

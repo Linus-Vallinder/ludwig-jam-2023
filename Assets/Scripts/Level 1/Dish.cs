@@ -16,7 +16,7 @@ public class Dish : MonoBehaviour, Ipullable
 
     private void Start()
     {
-        transform.localScale = new(10, 10, 10);
+        transform.localScale = new Vector3(10, 10, 10);
         m_collider.convex = true;
         gameObject.layer = 8;
     }

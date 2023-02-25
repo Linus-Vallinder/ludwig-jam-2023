@@ -7,7 +7,8 @@ public class Cable : MonoBehaviour, Ipullable
     [SerializeField] private float m_minPullPower = 1f;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private ParticleSystem m_sparkEffect;
-
+    [Space, SerializeField] private AudioClip m_pullClip;
+    
     [Space, SerializeField] private List<Material> m_mats = new();
 
     //Objects that will interact with the rope
@@ -201,6 +202,7 @@ public class Cable : MonoBehaviour, Ipullable
         if (!(direction.magnitude * force > m_minPullPower)) return;
         
         FindObjectOfType<CableMiniGameGeneric>().RemoveCable(this);
+        SFXManager.Instance.PlaySound(m_pullClip, Random.Range(.95f, 1.05f), Random.Range(.95f, 1.15f));
         var clone = Instantiate(m_sparkEffect, transform.position, Quaternion.identity);
         clone.Play();
     }

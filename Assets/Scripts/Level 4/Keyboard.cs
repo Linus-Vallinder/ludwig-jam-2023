@@ -9,6 +9,8 @@ public class Keyboard : MonoBehaviour
     [Header("Keys")]
     [SerializeField] private List<Key> m_keys = new();
 
+    [Header("SFX")] [SerializeField] private List<AudioClip> m_clicks = new();
+
     [Header("Word List")] [SerializeField] private List<string> m_words = new();
     [SerializeField] private TMP_Text m_WPM;
     
@@ -40,10 +42,14 @@ public class Keyboard : MonoBehaviour
     {
         Debug.Log($"{key.name} has been clicked!");
 
+        SFXManager.Instance.PlayRandomSoundFromArray(m_clicks.ToArray(), Random.Range(.95f, 1.05f), Random.Range(.95f, 1.05f));
+        
         if (!key.IsHighlighted) return;
         key.IsHighlighted = false;
+        
         m_wordsTyped++;
         m_WPM.text += $" {m_words[Random.Range(0, m_words.Count)]}";
+        
         CameraShake.Instance.StartShake(.1f, .075f);
     }
 }
