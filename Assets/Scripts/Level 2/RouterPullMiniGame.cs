@@ -26,6 +26,7 @@ public class RouterPullMiniGame : MonoBehaviour
     public void StopMiniGame()
     {
         ScoreManager.Instance.Score += 10000 - m_count.Count;
+        ScoreManager.Instance.LostViewers += 10000 - m_count.Count;
         var handler = GameObject.Find("Paw Transition").GetComponent<TransitionHandler>();
         var index = FindObjectOfType<GameOrder>().GetNextSceneIndex();
 

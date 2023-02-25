@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static T m_instance;
+    private static T _instance;
 
     public static T Instance
     {
         get
         {
-            if (m_instance == null) m_instance = FindObjectOfType<T>();
-            return m_instance;
+            if (_instance == null) _instance = FindObjectOfType<T>();
+            return _instance;
         }
     }
 }

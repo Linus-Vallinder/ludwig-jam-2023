@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,6 +31,9 @@ public class KeyboardMiniGameLogic : MonoBehaviour
     public void StopMiniGame()
     {
         m_isGoing = false;
+
+        ScoreManager.Instance.Score += m_keyboard.GetScore();
+        ScoreManager.Instance.WordsTyped += m_keyboard.GetScore();
 
         var handler = GameObject.Find("Paw Transition").GetComponent<TransitionHandler>();
         var index = FindObjectOfType<GameOrder>().GetNextSceneIndex();

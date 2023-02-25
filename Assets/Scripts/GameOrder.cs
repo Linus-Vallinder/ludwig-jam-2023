@@ -9,6 +9,7 @@ public class GameOrder : MonoBehaviour
 
     [Space, SerializeField] private int m_miniGameAmount = 10;
     [Space, SerializeField] private List<int> m_miniGameOrder = new();
+    [Space, SerializeField] private int m_finalScene = 6;
 
     private List<int> m_order = new();
     private int m_currentIndex = 0;
@@ -28,8 +29,9 @@ public class GameOrder : MonoBehaviour
         if (m_currentIndex >= m_order.Count)
         {
             m_currentIndex = 0;
-            return 1;
+            return m_finalScene;
         }
+
         var result = m_order[m_currentIndex];
         m_currentIndex++;
         return result;

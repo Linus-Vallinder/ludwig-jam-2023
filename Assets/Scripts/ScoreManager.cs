@@ -21,4 +21,9 @@ public class ScoreManager : Singleton<ScoreManager>
     }
 
     private int m_score;
+
+    public int LostELO { get; set; }
+    public int LostMoney { get; set; }
+    public int LostViewers { get; set; }
+    public int WordsTyped { get; set; }
 }

@@ -7,19 +7,22 @@ using Random = UnityEngine.Random;
 
 public class CableMiniGameGeneric : MonoBehaviour
 {
-    [SerializeField] private List<Transform> m_connections = new();
+    [SerializeField] private int CableAmount = 3;
+    [Space, SerializeField] private List<Transform> m_connections = new();
 
     [Space, SerializeField] private Cable m_cablePrefab;
     [SerializeField] private Vector3 m_connectionOffset;
 
-    private Dictionary<Transform, Cable> m_activeConnections = new();
+    private readonly Dictionary<Transform, Cable> m_activeConnections = new();
 
     public event Action OnRemoveCable;
 
     public void SetupMiniGame()
     {
-        AddRandomCableConnection();
-        AddRandomCableConnection();
+        for (var i = 0; i < CableAmount; i++)
+        {
+            AddRandomCableConnection();
+        }
     }
 
     private bool IsFull() =>
@@ -35,8 +38,8 @@ public class CableMiniGameGeneric : MonoBehaviour
         return empty.ToList()[Random.Range(0, empty.Count())];
     }
 
-    private Cable SpawnCable() =>
-        Instantiate(m_cablePrefab);
+    private Cable SpawnCable(Vector3 spawnPosition) =>
+        Instantiate(m_cablePrefab, spawnPosition, Quaternion.identity);
 
     private IEnumerator StartSpawn(float delay)
     {
@@ -48,7 +51,7 @@ public class CableMiniGameGeneric : MonoBehaviour
     {
         var value = m_activeConnections.ContainsValue(cable);
         if (value == false) return;
-        var key = m_connections.Where(x => x.position == cable.transform.position - m_connectionOffset).FirstOrDefault();
+        var key = m_connections.FirstOrDefault(x => x.position == cable.transform.position - m_connectionOffset);
         m_activeConnections.Remove(key);
 
         OnRemoveCable?.Invoke();
@@ -57,18 +60,12 @@ public class CableMiniGameGeneric : MonoBehaviour
         StartCoroutine(StartSpawn(1f));
     }
 
-    public (Cable, Transform) AddRandomCableConnection()
+    private (Cable, Transform) AddRandomCableConnection()
     {
-        if (IsFull())
-        {
-            Debug.Log("No empty spaces left in the cable game!");
-            return (null, null);
-        }
+        if (IsFull()) return (null, null);
 
         var connection = GetRandomConnection();
-        var clone = SpawnCable();
-        clone.transform.position = connection.position + m_connectionOffset;
-
+        var clone = SpawnCable(connection.position + m_connectionOffset);
         m_activeConnections.Add(connection, clone);
 
         return (clone, connection);

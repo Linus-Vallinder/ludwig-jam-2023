@@ -6,6 +6,9 @@ public class Cable : MonoBehaviour, Ipullable
 {
     [SerializeField] private float m_minPullPower = 1f;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private ParticleSystem m_sparkEffect;
+
+    [Space, SerializeField] private List<Material> m_mats = new();
 
     //Objects that will interact with the rope
     [Space] public Transform whatTheRopeIsConnectedTo;
@@ -46,7 +49,12 @@ public class Cable : MonoBehaviour, Ipullable
         }
 
         //Init the line renderer we use to display the rope
-        if(lineRenderer == null) lineRenderer = GetComponent<LineRenderer>();
+        if (lineRenderer == null)
+        {
+            lineRenderer = GetComponent<LineRenderer>();
+        }
+
+        lineRenderer.material = m_mats[Random.Range(0, m_mats.Count)];
 
         //Init the spring we use to approximate the rope from point a to b
         UpdateSpring();
@@ -190,9 +198,10 @@ public class Cable : MonoBehaviour, Ipullable
 
     public void Pull(Vector3 direction, float force)
     {
-        if (direction.magnitude * force > m_minPullPower)
-        {
-            FindObjectOfType<CableMiniGameGeneric>().RemoveCable(this);
-        }
+        if (!(direction.magnitude * force > m_minPullPower)) return;
+        
+        FindObjectOfType<CableMiniGameGeneric>().RemoveCable(this);
+        var clone = Instantiate(m_sparkEffect, transform.position, Quaternion.identity);
+        clone.Play();
     }
 }

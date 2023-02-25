@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
         m_currentTime = 0f;
     }
 
-    public void StopTimer()
+    private void StopTimer()
     {
         m_isTiming = false;
         OnTimerStop?.Invoke();

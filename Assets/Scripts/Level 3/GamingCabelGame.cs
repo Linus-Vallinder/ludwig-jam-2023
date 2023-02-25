@@ -25,6 +25,8 @@ public class GamingCabelGame : MonoBehaviour
     public void StopMiniGame()
     {
         ScoreManager.Instance.Score += m_elo.GetScore();
+        ScoreManager.Instance.LostELO += m_elo.GetScore();
+
         var handler = GameObject.Find("Paw Transition").GetComponent<TransitionHandler>();
         var index = FindObjectOfType<GameOrder>().GetNextSceneIndex();
 

@@ -131,6 +131,7 @@ public class ThrowGameManager : MonoBehaviour
 
         m_visual.Amount += points;
         ScoreManager.Instance.Score += points;
+        ScoreManager.Instance.LostMoney += points;
 
         Debug.Log("Item has fallen off!");
     }
